@@ -1,9 +1,13 @@
-import React from 'react'
+import React,{useContext} from 'react'
 import {Navbar,Container,FormControl,Dropdown,Nav,Badge} from 'react-bootstrap'
 import {FaShoppingCart} from 'react-icons/fa'
 import {Link} from 'react-router-dom'
+import { CardContext } from '../Context/CardContext'
+
 
 const Header = () => {
+
+    const {state}=useContext(CardContext)
     return (
         <Navbar bg="dark" variant="dark" style={{height:80}}>
             <Container>
@@ -20,11 +24,31 @@ const Header = () => {
              <Dropdown>
              <Dropdown.Toggle variant="success" id="dropdown-basic">
              <FaShoppingCart color="white" fontSize="25px" />
-             <Badge>{10}</Badge>
+             <Badge>{state.cart.length}</Badge>
                </Dropdown.Toggle>
               
                <Dropdown.Menu>
-                  <span style={{padding:'10px'}}>Cart isEmpty</span>
+                   {state.cart.length > 0 ? (
+                       <>
+                       {state.cart.map(prod=>(
+                           <span key={prod.id} className="cartitem">
+                               <img src={prod.image} alt={prod.name}  />
+                               <div className="cartitemdetails">
+                                   <span>{prod.name}</span>
+                                   <span>{prod.price.split('.')[0]}</span>
+
+                               </div>
+
+                           </span>
+                       )
+
+                       )}
+
+                       </>
+                   ):(
+                       <span style={{padding:'10px'}}>Cart isEmpty</span>
+                   )}
+                  
                </Dropdown.Menu>
              </Dropdown>
              </Nav>
