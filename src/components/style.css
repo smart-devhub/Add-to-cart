@@ -34,3 +34,25 @@
     display: flex;
     justify-content: space-between;
 }
+.cartitem{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    margin:0 20px;
+    margin-bottom: 20px;
+   
+
+}
+
+.cartitemimg{
+    border-radius: 50%;
+    object-fit: cover;
+    width: 50px;
+    height: 50px;
+}
+.cartitemdetails{
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding:0 20px;
+}
